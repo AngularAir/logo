@@ -1,0 +1,80 @@
+<style>
+  #container {
+    display: table;
+    text-align: center;
+    background-color: white;
+    width: 670px;
+    height: 670px;
+    position: relative;
+  }
+  #container-child {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  img {
+    max-height: 280px
+  }
+  #ng {
+
+  }
+
+  #hoa {
+  }
+
+  body {
+    font-family:'helvetica neue';
+    font-weight: 300;
+    padding: 100px;
+    background-color: #ddd;
+  }
+
+  #plus-container {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 260px;
+  }
+  #plus {
+    position: absolute;
+    font-size: 140px;
+    font-weight: 100;
+    left: 0;
+    right: 0;
+  }
+  #handle {
+    font-size: 120px;
+    margin-top: 60px;
+  }
+</style>
+<div id="container">
+    <div id="container-child">
+    <img src="ng.png" id="ng">
+    <span id="plus-container">
+      <span id="plus">+</span>
+    </span>
+    <img src="hoa.png" id="hoa">
+    <div id="handle">
+      @AngularAir
+    </div>
+  </div>
+</div>
+<div>
+  <button onclick="downloadImage()">Download Image</button>
+</div>
+<div id="output"></div>
+<script src="jquery-2.1.1.min.js"></script>
+<script src="html2canvas.min.js"></script>
+<script src="canvas2image.js"></script>
+<script>
+  function downloadImage() {
+    html2canvas($("#container-child"), {
+      onrendered: function(canvas) {
+        theCanvas = canvas;
+        document.body.appendChild(canvas);
+        Canvas2Image.saveAsPNG(canvas);
+        $("#output").append(canvas);
+      }
+    });
+  }
+</script>
